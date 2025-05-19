@@ -1,9 +1,0 @@
-[INFORMATION]
-
-This example demonstrates how to deploy an application using a Docker Compose file in a Docker environment on an AWS instance with AWS CodeDeploy.
-
-To proceed:
-
-Copy the codedeploy folder into the project that needs to be deployed.
-Ensure all necessary modifications are made in the deployment scripts and appspec.yaml.
-Replace the existing Docker Compose file with the project's specific Docker Compose file.
