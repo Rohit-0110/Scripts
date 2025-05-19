@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/codedeploy/reactive-resume
+hooks:
+  BeforeInstall:
+    - location: script/before-install.sh
+      runas: root
+  ApplicationStart:
+    - location: script/start.sh
+      runas: root
+  ApplicationStop:
+    - location: script/stop.sh
+      runas: root

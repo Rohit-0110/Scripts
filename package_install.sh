@@ -11,7 +11,7 @@ else
     exit 1
 fi
 
-check_package_name(){
+check_package_name() {
     if [[ -z "${PACKAGE_NAME}" ]]; then
         echo "Error: Package name is not specified"
         exit 1
@@ -27,7 +27,7 @@ install_on_ubuntu() {
         echo "$PACKAGE_NAME is not installed. Installing on Ubuntu..."
         sudo apt update
         sudo apt install -y "$PACKAGE_NAME"
-        
+
         # Verify installation
         if dpkg -l | grep -qw "$PACKAGE_NAME"; then
             echo "$PACKAGE_NAME has been installed successfully on Ubuntu."
@@ -45,7 +45,7 @@ install_on_centos() {
     else
         echo "$PACKAGE_NAME is not installed. Installing on CentOS..."
         sudo yum install -y "$PACKAGE_NAME"
-        
+
         # Verify installation
         if rpm -qa | grep -qw "$PACKAGE_NAME"; then
             echo "$PACKAGE_NAME has been installed successfully on CentOS."
@@ -56,14 +56,14 @@ install_on_centos() {
 }
 
 case "$OS" in
-    ubuntu)
-        install_on_ubuntu
-        ;;
-    centos)
-        install_on_centos
-        ;;
-    *)
-        echo "Unsupported operating system: $OS"
-        exit 1
-        ;;
+ubuntu)
+    install_on_ubuntu
+    ;;
+centos)
+    install_on_centos
+    ;;
+*)
+    echo "Unsupported operating system: $OS"
+    exit 1
+    ;;
 esac
