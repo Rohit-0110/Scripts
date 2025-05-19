@@ -1,0 +1,46 @@
+{
+    "metrics": {
+        "namespace": "MyCustomNamespace",
+        "metrics_collected": {
+            "mem": {
+                "measurement": [
+                    "mem_used_percent"
+                ],
+                "metrics_collection_interval": 1
+            },
+            "disk": {
+                "measurement": [
+                    "used_percent"
+                ],
+                "resources": [
+                    "/"
+                ]
+            }
+        },
+        "append_dimensions": {
+            "InstanceId": "${aws:InstanceId}"
+        }
+    }
+}
+
+---
+
+{
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                        "file_path": "/var/log/auth.log",
+                        "log_group_name": "ec2-ssh-logs",
+                        "log_stream_name": "{instance_id}"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+---
+
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:amazon-cloudwatch-agent.json
